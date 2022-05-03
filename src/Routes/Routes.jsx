@@ -11,13 +11,41 @@ import { ProtectedRoute } from "./ProtectedRoute";
 export function RoutesList() {
   return (
     <Router>
-      <Route path="login" element={<Login/>} />
-      <Route path="register" element={<Register/>} />
-      <Route path="palette" element={<Pallete/>} />
-      <Route path="myprojects" element={<ProtectedRoute><MyProjects/></ProtectedRoute>} />
-      <Route path="myprojects/:projectid" element={<ProtectedRoute><EditProject/></ProtectedRoute>} />
-      <Route path="project/question/edit/text/:questionid" element={<ProtectedRoute><EditQuestionTextNumber/></ProtectedRoute>} />
-      <Route path="project/question/edit/number/:questionid" element={<ProtectedRoute><EditQuestionTextNumber/></ProtectedRoute>} />
+      <Route path="" element={<Login />} />
+      <Route path="register" element={<Register />} />
+      <Route path="palette" element={<Pallete />} />
+      <Route
+        path="myprojects"
+        element={
+          <ProtectedRoute>
+            <MyProjects />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="myprojects/:projectid"
+        element={
+          <ProtectedRoute>
+            <EditProject />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="project/question/edit/text/:questionid"
+        element={
+          <ProtectedRoute>
+            <EditQuestionTextNumber />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="project/question/edit/number/:questionid"
+        element={
+          <ProtectedRoute>
+            <EditQuestionTextNumber />
+          </ProtectedRoute>
+        }
+      />
       <Route path="*" element={<>404 Aqui no hay nada :( </>} />
     </Router>
   );
