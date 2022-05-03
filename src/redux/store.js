@@ -20,6 +20,7 @@ import prescriptionReducer from "./slices/prescriptionSlice";
 import { prescriptionAPI } from "./store/querys/prescription-query";
 import { projectsAPI } from "./store/querys/projects-query";
 import { questionsAPI } from "./store/querys/questions-query";
+import { formquestionsAPI } from "./store/querys/formquestions-query";
 
 const persistConfig = {
   key: "root",
@@ -44,7 +45,8 @@ export const store = configureStore({
     [ordersAPI.reducerPath]: ordersAPI.reducer,
     [prescriptionAPI.reducerPath]: prescriptionAPI.reducer,
     [projectsAPI.reducerPath]: projectsAPI.reducer,
-    [questionsAPI.reducerPath]:questionsAPI.reducer,
+    [questionsAPI.reducerPath]: questionsAPI.reducer,
+    [formquestionsAPI.reducerPath]: formquestionsAPI.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
@@ -60,6 +62,7 @@ export const store = configureStore({
       prescriptionAPI.middleware,
       projectsAPI.middleware,
       questionsAPI.middleware,
+      formquestionsAPI.middleware,
     ]),
 });
 

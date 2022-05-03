@@ -6,6 +6,7 @@ import EditProject from "../Pages/EditProject/EditProject";
 import EditQuestionTextNumber from "../Pages/EditQuestionTextNumber/EditQuestionTextNumber";
 import MyProjects from "../Pages/MyProjects/MyProjects";
 import Pallete from "../Pages/Pallete/Pallete";
+import Questionnarie from "../Pages/Questionnarie/Questionnarie";
 import { ProtectedRoute } from "./ProtectedRoute";
 
 export function RoutesList() {
@@ -46,6 +47,9 @@ export function RoutesList() {
           </ProtectedRoute>
         }
       />
+
+      <Route path="sharelink/:projectid" element={<Questionnarie />} />
+
       <Route path="*" element={<>404 Aqui no hay nada :( </>} />
     </Router>
   );
