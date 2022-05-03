@@ -13,7 +13,15 @@ export const formquestionsAPI = createApi({
         method: "get",
       }),
     }),
+    postRegister: builder.mutation({
+      query: ({ projectid = "", submitData }) => ({
+        url: `/formquestions/${projectid}`,
+        method: "post",
+        body: { data: submitData },
+      }),
+    }),
   }),
 });
 
-export const { useGetFormQuestionDataQuery } = formquestionsAPI;
+export const { useGetFormQuestionDataQuery, usePostRegisterMutation } =
+  formquestionsAPI;

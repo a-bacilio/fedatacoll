@@ -47,6 +47,14 @@ export function RoutesList() {
           </ProtectedRoute>
         }
       />
+      <Route
+        path="project/question/edit/image/:questionid"
+        element={
+          <ProtectedRoute>
+            <EditQuestionTextNumber />
+          </ProtectedRoute>
+        }
+      />
 
       <Route path="sharelink/:projectid" element={<Questionnarie />} />
 
