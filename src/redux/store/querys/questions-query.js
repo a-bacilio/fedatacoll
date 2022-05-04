@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import jsCookie from 'js-cookie';
+import jsCookie from "js-cookie";
 
 export const questionsAPI = createApi({
   reducerPath: "questionsAPI",
@@ -11,11 +11,11 @@ export const questionsAPI = createApi({
       query: ({ questionid }) => ({
         url: `/question/${questionid}`,
         method: "get",
-        headers:{
-          authorization:jsCookie.get("DTCTOKEN"),
-          userId:jsCookie.get("DTCUSERID"),
-        }
-      })
+        headers: {
+          authorization: jsCookie.get("DTCTOKEN"),
+          userId: jsCookie.get("DTCUSERID"),
+        },
+      }),
     }),
     updateNumberTextQuestion: builder.mutation({
       query: ({ name, labelText, questionid }) => ({
@@ -23,29 +23,41 @@ export const questionsAPI = createApi({
         method: "put",
         body: {
           name,
-          labelText
+          labelText,
         },
-        headers:{
-          authorization:jsCookie.get("DTCTOKEN"),
-          userId:jsCookie.get("DTCUSERID"),
-        }
-      })
+        headers: {
+          authorization: jsCookie.get("DTCTOKEN"),
+          userId: jsCookie.get("DTCUSERID"),
+        },
+      }),
+    }),
+    updateImageQuestion: builder.mutation({
+      query: ({ body, questionid }) => ({
+        url: `/question/${questionid}`,
+        method: "put",
+        body: body,
+        headers: {
+          authorization: jsCookie.get("DTCTOKEN"),
+          userId: jsCookie.get("DTCUSERID"),
+        },
+      }),
     }),
     postCreateQuestion: builder.mutation({
-      query: ({ project, labelText, name, questionType }) => ({
+      query: ({ project, labelText, name, questionType, image = {} }) => ({
         url: `/question`,
         method: "post",
         body: {
           name,
           labelText,
           questionType,
-          project
+          project,
+          image,
         },
-        headers:{
-          authorization:jsCookie.get("DTCTOKEN"),
-          userId:jsCookie.get("DTCUSERID"),
-        }
-      })
+        headers: {
+          authorization: jsCookie.get("DTCTOKEN"),
+          userId: jsCookie.get("DTCUSERID"),
+        },
+      }),
     }),
     postQuestionUp: builder.mutation({
       query: ({ projectid, order }) => ({
@@ -53,13 +65,13 @@ export const questionsAPI = createApi({
         method: "put",
         body: {
           projectId: projectid,
-          order
+          order,
         },
-        headers:{
-          authorization:jsCookie.get("DTCTOKEN"),
-          userId:jsCookie.get("DTCUSERID"),
-        }
-      })
+        headers: {
+          authorization: jsCookie.get("DTCTOKEN"),
+          userId: jsCookie.get("DTCUSERID"),
+        },
+      }),
     }),
     postQuestionDown: builder.mutation({
       query: ({ projectid, order }) => ({
@@ -67,13 +79,13 @@ export const questionsAPI = createApi({
         method: "put",
         body: {
           projectId: projectid,
-          order
+          order,
         },
-        headers:{
-          authorization:jsCookie.get("DTCTOKEN"),
-          userId:jsCookie.get("DTCUSERID"),
-        }
-      })
+        headers: {
+          authorization: jsCookie.get("DTCTOKEN"),
+          userId: jsCookie.get("DTCUSERID"),
+        },
+      }),
     }),
     deleteQuestion: builder.mutation({
       query: ({ projectId, questionId }) => ({
@@ -81,22 +93,23 @@ export const questionsAPI = createApi({
         method: "delete",
         body: {
           projectId,
-          questionId
+          questionId,
         },
-        headers:{
-          authorization:jsCookie.get("DTCTOKEN"),
-          userId:jsCookie.get("DTCUSERID"),
-        }
-      })
+        headers: {
+          authorization: jsCookie.get("DTCTOKEN"),
+          userId: jsCookie.get("DTCUSERID"),
+        },
+      }),
     }),
   }),
 });
 
-export const { 
+export const {
   usePostCreateQuestionMutation,
   usePostQuestionUpMutation,
   usePostQuestionDownMutation,
   useDeleteQuestionMutation,
   useGetQuestionDataQuery,
-  useUpdateNumberTextQuestionMutation } =
-  questionsAPI;
+  useUpdateImageQuestionMutation,
+  useUpdateNumberTextQuestionMutation,
+} = questionsAPI;

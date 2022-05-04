@@ -3,6 +3,7 @@ import { Route, Routes as Router } from "react-router-dom";
 import Login from "../Pages/Auth/Login";
 import Register from "../Pages/Auth/Register";
 import EditProject from "../Pages/EditProject/EditProject";
+import EditQuestionImage from "../Pages/EditQuestionImage/EditQuestionImage";
 import EditQuestionTextNumber from "../Pages/EditQuestionTextNumber/EditQuestionTextNumber";
 import MyProjects from "../Pages/MyProjects/MyProjects";
 import Pallete from "../Pages/Pallete/Pallete";
@@ -51,7 +52,7 @@ export function RoutesList() {
         path="project/question/edit/image/:questionid"
         element={
           <ProtectedRoute>
-            <EditQuestionTextNumber />
+            <EditQuestionImage />
           </ProtectedRoute>
         }
       />

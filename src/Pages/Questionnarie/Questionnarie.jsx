@@ -33,10 +33,12 @@ function Questionnarie({}) {
                   questionNumber === index ? "visible" : "hidden"
                 }`}
               >
+                {item.imgUrl && <img src={item.imgUrl} alt="question_image" />}
                 <label className="flex flex-col items-center justify-center w-full p-2">
                   {item.labelText}{" "}
                   <input
                     {...register(item.name)}
+                    type={item.questionType === "number" ? "number" : "text"}
                     className="px-4 py-2 mt-1 text-black border-2 border-white rounde-sm"
                   />
                 </label>
