@@ -16,7 +16,6 @@ function Questionnarie({}) {
     formState: { errors },
   } = useForm();
   const onSubmit = (submitData) => {
-    console.log(submitData);
     postData({ projectid, submitData });
   };
   const [questionNumber, setQuestionNumber] = useState(0);
