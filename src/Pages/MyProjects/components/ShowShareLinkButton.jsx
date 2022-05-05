@@ -21,14 +21,14 @@ function ShowShareLinkButton({ className = "", projectId = "" }) {
       />
       {modal && (
         <div className="fixed top-0 left-0 flex flex-col items-center justify-center w-full h-full bg-black bg-opacity-70">
-          <div
-            className="absolute flex flex-col items-center justify-center w-12 h-12 text-xs text-black rounded-full cursor-pointer top-4 right-4 bg-fuchsia-400"
-            onClick={() => openModal(false)}
-          >
-            Cerrar
-          </div>
-          <div className="p-2 font-bold text-black bg-white rounded-lg">
+          <div className="relative p-2 font-bold text-black bg-white rounded-lg ">
             Haga clic para copiar: <br />
+            <div
+              className="absolute z-50 flex flex-col items-center justify-center w-12 h-12 text-xs font-bold text-black rounded-full cursor-pointer bg-fuchsia-400 -top-10 -right-10"
+              onClick={() => openModal(false)}
+            >
+              Cerrar
+            </div>
             <button
               type="button"
               onClick={copyToClipboard}

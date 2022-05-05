@@ -20,8 +20,21 @@ export const formquestionsAPI = createApi({
         body: { data: submitData },
       }),
     }),
+    getAllRegisters: builder.query({
+      query: ({ projectid = "" }) => ({
+        url: `/registers/${projectid}`,
+        method: "get",
+        headers: {
+          authorization: jsCookie.get("DTCTOKEN"),
+          userId: jsCookie.get("DTCUSERID"),
+        },
+      }),
+    }),
   }),
 });
 
-export const { useGetFormQuestionDataQuery, usePostRegisterMutation } =
-  formquestionsAPI;
+export const {
+  useGetFormQuestionDataQuery,
+  usePostRegisterMutation,
+  useGetAllRegistersQuery,
+} = formquestionsAPI;

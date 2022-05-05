@@ -8,6 +8,7 @@ import EditQuestionTextNumber from "../Pages/EditQuestionTextNumber/EditQuestion
 import MyProjects from "../Pages/MyProjects/MyProjects";
 import Pallete from "../Pages/Pallete/Pallete";
 import Questionnarie from "../Pages/Questionnarie/Questionnarie";
+import ReviewRegisters from "../Pages/ReviewRegisters/ReviewRegisters";
 import { ProtectedRoute } from "./ProtectedRoute";
 
 export function RoutesList() {
@@ -32,6 +33,16 @@ export function RoutesList() {
           </ProtectedRoute>
         }
       />
+
+      <Route
+        path="myprojects/registers/:projectid"
+        element={
+          <ProtectedRoute>
+            <ReviewRegisters />
+          </ProtectedRoute>
+        }
+      />
+
       <Route
         path="project/question/edit/text/:questionid"
         element={

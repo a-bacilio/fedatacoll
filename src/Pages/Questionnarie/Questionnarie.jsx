@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import { useGetFormQuestionDataQuery } from "../../redux/store/querys/formquestions-query";
 import { useForm } from "react-hook-form";
@@ -7,6 +7,7 @@ import { usePostRegisterMutation } from "../../redux/store/querys/formquestions-
 function Questionnarie({}) {
   const { projectid } = useParams();
   const { data, isSuccess } = useGetFormQuestionDataQuery({ projectid });
+  console.log(data);
   const [postData, { isSuccess: isSuccessRegister }] =
     usePostRegisterMutation();
   const {
@@ -21,7 +22,10 @@ function Questionnarie({}) {
   const [questionNumber, setQuestionNumber] = useState(0);
   return (
     <div className="w-full max-w-3xl mx-auto">
-      <div className="flex flex-col items-center justify-start w-full min-h-screen border-2 border-white rounded-lg shadow-lg shadow-white">
+      <div className="flex flex-col items-center justify-center w-full min-h-screen p-10 border-2 border-white rounded-lg shadow-lg shadow-white">
+        <h1 className="w-full mb-5 text-2xl font-bold text-center text-white">
+          Bienvenidos al cuestionario: {isSuccess && data.name}
+        </h1>
         <form onSubmit={handleSubmit(onSubmit)}>
           {isSuccess &&
             !isSuccessRegister &&
@@ -32,8 +36,14 @@ function Questionnarie({}) {
                   questionNumber === index ? "visible" : "hidden"
                 }`}
               >
-                {item.imgUrl && <img src={item.imgUrl} alt="question_image" />}
-                <label className="flex flex-col items-center justify-center w-full p-2">
+                {item.imgUrl && (
+                  <img
+                    src={item.imgUrl}
+                    className="w-full max-w-sm border-2 shadow-lg shadow-white"
+                    alt="question_image"
+                  />
+                )}
+                <label className="flex flex-col items-center justify-center w-full p-2 my-2">
                   {item.labelText}{" "}
                   <input
                     {...register(item.name)}
@@ -43,6 +53,7 @@ function Questionnarie({}) {
                 </label>
                 {questionNumber < data.questions.length - 1 && (
                   <button
+                    className="px-2 py-1 my-5 font-bold text-black bg-purple-300 rounded-lg"
                     type="button"
                     onClick={() => {
                       setQuestionNumber(questionNumber + 1);
@@ -52,11 +63,22 @@ function Questionnarie({}) {
                   </button>
                 )}
                 {questionNumber >= data.questions.length - 1 && (
-                  <button type="submit">Finalizar</button>
+                  <button
+                    className="px-2 py-1 my-5 font-bold text-black bg-purple-300 rounded-lg"
+                    type="submit"
+                  >
+                    Finalizar
+                  </button>
                 )}
               </div>
             ))}
-          {isSuccessRegister && <span>registro enviado</span>}
+          {isSuccessRegister && (
+            <Link to="/">
+              <span className="px-2 py-1 my-5 text-2xl font-bold text-black bg-white rounded-lg shadow-lg shadow-white">
+                Registro enviado, Muchas gracias :D
+              </span>
+            </Link>
+          )}
         </form>
       </div>
     </div>
