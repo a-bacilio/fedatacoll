@@ -6,17 +6,15 @@ export function ProtectedRoute({
   role = "hola",
   loginRoute = false,
 }) {
-
-  
   let response = <span>{role}</span>;
   if (!loginRoute) {
     if (!jsCookie.get("DTCUSERID") || !jsCookie.get("DTCTOKEN")) {
-      response = <Navigate to="/login" replace />;
+      response = <Navigate to="/" replace />;
     } else {
       response = children;
     }
   } else if (!jsCookie.get("DTCUSERID") || !jsCookie.get("DTCTOKEN")) {
-    response = <Navigate to="/login" replace />;
+    response = <Navigate to="/" replace />;
   } else {
     response = children;
   }

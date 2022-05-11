@@ -19,7 +19,7 @@ function EditQuestionImage() {
         </Link>
         Estas editando: {(data && data.name) || "..."}
       </TitleBox>
-      <Card>
+      <Card className="max-w-2xl mx-auto w-full">
         <EditQuestionImageOptionsForm refetch={refetch} data={data} />
       </Card>
     </>

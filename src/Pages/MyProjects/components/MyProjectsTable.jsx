@@ -2,6 +2,7 @@ import React from "react";
 
 import { BsFillPencilFill } from "react-icons/bs";
 import { RiTableAltFill } from "react-icons/ri";
+import { MdVisibility } from "react-icons/md";
 import { Link } from "react-router-dom";
 import DeleteProjectButton from "./DeleteProjectButton";
 import ShowShareLinkButton from "./ShowShareLinkButton";
@@ -31,23 +32,29 @@ function MyProjectsTable({ data, refetch }) {
             </td>
             <td className="px-2 py-1 text-center border-2 border-white">
               <span className="flex flex-row justify-center w-full text-fuchsia-500">
-                <Link to={`/myProjects/${item._id}`}>
+                <Link
+                  to={`/myProjects/${item._id}`}
+                  className="hidden lg:block"
+                >
                   <BsFillPencilFill className="mx-2 cursor-pointer sm:w-8 sm:px-2" />
                 </Link>
-                <Link to={`/myProjects/registers/${item._id}`}>
+                <Link
+                  to={`/myProjects/registers/${item._id}`}
+                  className="hidden lg:block"
+                >
                   <RiTableAltFill className="mx-2 cursor-pointer sm:w-8 sm:px-2" />
                 </Link>
                 <DeleteProjectButton
                   projectid={item._id}
                   refetch={refetch}
-                  className="mx-2"
+                  className="mx-2 hidden lg:block"
                 />
                 <ShowShareLinkButton
                   className="mx-2 cursor-pointer sm:w-8 sm:px-2"
                   projectId={item._id}
                 />
                 <Link to={`/sharelink/${item._id}`} target="_blank">
-                  <RiTableAltFill className="mx-2 cursor-pointer sm:w-8 sm:px-2" />
+                  <MdVisibility className="mx-2 cursor-pointer sm:w-8 sm:px-2" />
                 </Link>
               </span>
             </td>

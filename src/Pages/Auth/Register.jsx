@@ -19,7 +19,7 @@ function Register() {
           Registrese en el sistema :)
         </span>
         <RegisterForm />
-        <Link to="/login">
+        <Link to="/">
           <Button variation={1}>Tengo una cuenta</Button>
         </Link>
         <Link to="#">
