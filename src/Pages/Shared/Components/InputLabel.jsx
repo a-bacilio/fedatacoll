@@ -1,11 +1,14 @@
-import React from 'react'
+import React from "react";
 
-const InputLabel = ({children, onClick, className}) => {
+const InputLabel = ({ children, onClick, className }) => {
   return (
-    <label onClick={onClick} className={`${className} flex flex-col w-full p-2 font-bold text-white`} >
-            {children}
+    <label
+      onClick={onClick}
+      className={`${className} flex flex-col w-full p-2 font-bold text-black`}
+    >
+      {children}
     </label>
-  )
-}
+  );
+};
 
-export default InputLabel
+export default InputLabel;

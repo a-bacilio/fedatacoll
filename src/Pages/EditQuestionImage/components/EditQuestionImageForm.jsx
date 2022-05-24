@@ -29,7 +29,7 @@ function EditQuestionImageForm({ data, refetch }) {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-col items-center max-w-2xl p-5"
+      className="flex flex-col items-center max-w-2xl p-5 mx-auto"
       encType="multipart/form-data"
     >
       <InputLabel htmlFor="name">
@@ -68,9 +68,12 @@ function EditQuestionImageForm({ data, refetch }) {
         )}
       </InputLabel>
 
-      <Button variation={2} type="submit">
+      <button
+        className="px-2 py-1 bg-white border-2 border-black rounded-lg"
+        type="submit"
+      >
         Guardar
-      </Button>
+      </button>
       {isSuccess && (
         <NotificationSpan className="w-full p-5">
           Ingreso exitoso

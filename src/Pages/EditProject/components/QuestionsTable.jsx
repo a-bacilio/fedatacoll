@@ -5,14 +5,15 @@ import NotificationSpan from "../../Shared/Components/NotificationSpan";
 import ButtonDelete from "./ButtonDelete";
 import ButtonDown from "./ButtonDown";
 import ButtonUp from "./ButtonUp";
+import CreateQuestionForm from "./CreateQuestionForm";
 
 function QuestionsTable({ data, refetch }) {
   const { projectid } = useParams();
 
   return (
-    <table className="w-full max-w-3xl p-0 mx-auto text-xs bg-black bg-opacity-25 border-2 border-white sm:text-base sm:p-5">
+    <table className="w-full max-w-6xl p-0 mx-auto text-xs bg-black bg-opacity-25 border-2 border-white sm:text-base sm:p-5">
       <thead>
-        <tr className="text-purple-500">
+        <tr className="text-black">
           <th className="px-2 py-1 border-2 border-white">#</th>
           <th className="px-2 py-1 border-2 border-white">Campo</th>
           <th className="px-2 py-1 border-2 border-white">Pregunta</th>
@@ -37,7 +38,7 @@ function QuestionsTable({ data, refetch }) {
                 {item.questionType}
               </td>
               <td className="px-2 py-1 text-center border-2 border-white">
-                <span className="flex flex-row justify-center w-full text-fuchsia-500">
+                <span className="flex flex-row justify-center w-full text-black">
                   <Link
                     to={`/project/question/edit/${item.questionType}/${item._id}`}
                   >
@@ -75,6 +76,7 @@ function QuestionsTable({ data, refetch }) {
             </td>
           </tr>
         )}
+        <CreateQuestionForm projectid={projectid} refetch={refetch} />
       </tbody>
     </table>
   );

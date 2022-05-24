@@ -1,37 +1,41 @@
-import React from 'react'
+import React from "react";
 import { useForm } from "react-hook-form";
-import { usePostCreateProjectMutation, useGetMyProjectsQuery} from '../../../redux/store/querys/projects-query';
-import Button from '../../Shared/Components/Button';
-import InputField from '../../Shared/Components/InputField';
-import InputLabel from '../../Shared/Components/InputLabel';
-import NotificationSpan from '../../Shared/Components/NotificationSpan';
+import {
+  usePostCreateProjectMutation,
+  useGetMyProjectsQuery,
+} from "../../../redux/store/querys/projects-query";
+import InputField from "../../Shared/Components/InputField";
 
-
-
-function CreateProjectForm(){
-    const { register, handleSubmit, formState: { errors }, reset  } = useForm();
-    const {refetch} = useGetMyProjectsQuery()
-    const [postCreateProject,{isSuccess,isError,isLoading,error}] = usePostCreateProjectMutation();
-    const onSubmit = async (data) => {
-      await postCreateProject(data);
-      reset()
-      refetch();
-    };
+function CreateProjectForm({ refetch }) {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm();
+  const [postCreateProject, { isError, isLoading }] =
+    usePostCreateProjectMutation();
+  const onSubmit = async (data) => {
+    await postCreateProject(data);
+    reset();
+    refetch();
+  };
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col items-center p-3" >
-       
-      <InputLabel htmlFor="name">
-          Nombre del proyecto:
-          <InputField props={{...register("name", { required: true })}} type="string"/>
-          {errors.name && <NotificationSpan>Debe colocar le un nombre al proyecto</NotificationSpan>}
-      </InputLabel>
-      
-      <Button variation={2} type="submit">Crear proyecto</Button>
-      {isSuccess&&<NotificationSpan className='w-full p-5'>Creacion exitosa</NotificationSpan>}
-      {isLoading&&<NotificationSpan className='w-full p-5'>Cargando..</NotificationSpan>}
-      {isError&&<NotificationSpan className='w-full p-5'>Hubo un error: {error.data.msg}</NotificationSpan>}
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-row">
+      <InputField
+        placeholder="proyecto genial!"
+        props={{ ...register("name", { required: true }) }}
+        type="string"
+      />
+      <button
+        className="px-2 py-1 mx-2 text-white rounded-lg bg-slate-900 border-lg"
+        type="submit"
+      >
+        {!isLoading && "Crear"} {isLoading && "Cargando"}{" "}
+        {isError && errors.name && "nombre?"}
+      </button>
     </form>
-  )
+  );
 }
 
-export default CreateProjectForm
+export default CreateProjectForm;

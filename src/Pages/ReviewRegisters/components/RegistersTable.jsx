@@ -12,7 +12,6 @@ function generateReadebleDate(text) {
 }
 
 function RegistersTable({ data = [], refetch = () => {} }) {
-  console.log(data);
   const [columns, setColumns] = useState([]);
 
   useEffect(() => {
@@ -34,51 +33,48 @@ function RegistersTable({ data = [], refetch = () => {} }) {
     }
   }, [data, columns]);
   return (
-    <div className="flex flex-col justify-center w-full itmes-center">
-      <div className="w-full max-w-5xl p-10 mx-auto border-2 rounded-lg shadow-lg shadow-white">
-        {data && (
-          <table className="w-full">
-            <thead>
-              <tr>
-                <th className="border-2 border-white">id</th>
-                {columns.map((column) => (
-                  <th
-                    key={`column-${column}`}
-                    className="border-2 border-white"
-                  >
-                    {column}
-                  </th>
-                ))}
+    <div className="flex flex-col justify-center w-full times-center">
+      {data && (
+        <table className="w-full text-xs">
+          <thead>
+            <tr>
+              <th className="border-2 border-black">id</th>
+              {columns.map((column) => (
+                <th key={`column-${column}`} className="border-2 border-black">
+                  {column}
+                </th>
+              ))}
 
-                <th className="border-2 border-white">registrado el</th>
-              </tr>
-            </thead>
-            <tbody>
-              {data &&
-                data.length > 0 &&
-                data.map((dataElement, index) => (
-                  <tr key={"element" + index}>
-                    <td className="py-1 text-center border-2 border-white">
-                      {`...${dataElement._id.slice(
-                        dataElement._id.length - 4,
-                        dataElement._id.length
-                      )}`}
+              <th className="border-2 border-black">registrado el</th>
+            </tr>
+          </thead>
+          <tbody>
+            {data &&
+              data.length > 0 &&
+              data.map((dataElement, index) => (
+                <tr key={"element" + index}>
+                  <td className="py-1 text-center border-2 border-black">
+                    {`...${dataElement._id.slice(
+                      dataElement._id.length - 4,
+                      dataElement._id.length
+                    )}`}
+                  </td>
+                  {columns.map((columnData, index) => (
+                    <td
+                      key={`index-${index}`}
+                      className="py-1 text-center border-2 border-black"
+                    >
+                      {(dataElement.data && dataElement.data[columnData]) || ""}
                     </td>
-                    {columns.map((columnData) => (
-                      <td className="py-1 text-center border-2 border-white">
-                        {(dataElement.data && dataElement.data[columnData]) ||
-                          ""}
-                      </td>
-                    ))}
-                    <td className="py-1 text-center border-2 border-white">
-                      {`${generateReadebleDate(dataElement.createdAt)}`}
-                    </td>
-                  </tr>
-                ))}
-            </tbody>
-          </table>
-        )}
-      </div>
+                  ))}
+                  <td className="py-1 text-center border-2 border-black">
+                    {`${generateReadebleDate(dataElement.createdAt)}`}
+                  </td>
+                </tr>
+              ))}
+          </tbody>
+        </table>
+      )}
     </div>
   );
 }

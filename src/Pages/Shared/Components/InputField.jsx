@@ -6,7 +6,7 @@ const InputField = ({ props, placeholder = "", type = "" }) => {
       {...props}
       type={type}
       placeholder={placeholder}
-      className="w-full px-4 py-1 font-bold text-purple-500 rounded-lg"
+      className="w-full px-4 py-1 font-bold text-black border-2 border-black rounded-lg"
     />
   );
 };

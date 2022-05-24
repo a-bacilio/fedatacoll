@@ -1,4 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import jsCookie from "js-cookie";
+import { store } from "../../store";
+import { Dispatch } from "@reduxjs/toolkit";
 
 export const authAPI = createApi({
   reducerPath: "authAPI",
@@ -15,17 +18,19 @@ export const authAPI = createApi({
           password,
         },
       }),
-      transformResponse: (response) => response,
+      transformResponse: (response) => {
+        return response;
+      },
     }),
     postRegisterUser: builder.mutation({
-      query: ({ name,email, password,passwordConfirmation }) => ({
+      query: ({ name, email, password, passwordConfirmation }) => ({
         url: "/signup",
         method: "post",
         body: {
           name,
           email,
           password,
-          passwordConfirmation
+          passwordConfirmation,
         },
       }),
       transformResponse: (response) => response,
@@ -43,5 +48,8 @@ export const authAPI = createApi({
   }),
 });
 
-export const { usePostLoginUserMutation, usePostEmailTokenValidationQuery,usePostRegisterUserMutation } =
-  authAPI;
+export const {
+  usePostLoginUserMutation,
+  usePostEmailTokenValidationQuery,
+  usePostRegisterUserMutation,
+} = authAPI;

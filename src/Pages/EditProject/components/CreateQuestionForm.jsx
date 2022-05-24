@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import Button from "../../Shared/Components/Button";
 import NotificationSpan from "../../Shared/Components/NotificationSpan";
@@ -7,74 +7,85 @@ import InputLabel from "../../Shared/Components/InputLabel";
 import { useGetOneProjectQuery } from "../../../redux/store/querys/projects-query";
 import { usePostCreateQuestionMutation } from "../../../redux/store/querys/questions-query";
 
-function CreateQuestionForm({ projectid = "" }) {
-  const { refetch } = useGetOneProjectQuery({ projectid });
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-  } = useForm();
+function CreateQuestionForm({ projectid = "", refetch }) {
   const [postCreateQuestion, { isSuccess, isError, isLoading, error }] =
     usePostCreateQuestionMutation();
-  const onSubmit = async (data) => {
-    await postCreateQuestion({ ...data, project: projectid });
-    reset();
-    await refetch();
+  const [formData, setFormData] = useState({
+    name: "",
+    labelText: "",
+    questionType: "",
+  });
+  const handleSubmit = async (data) => {
+    if (
+      formData.name === "" ||
+      formData.labelText === "" ||
+      formData.questionType === ""
+    ) {
+      alert("Complete todos los campos");
+    } else {
+      await postCreateQuestion({ ...formData, project: projectid });
+      setFormData({
+        name: "",
+        labelText: "",
+      });
+      await refetch();
+    }
   };
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-col items-center p-5"
-    >
-      <h1 className="w-full text-2xl font-bold text-center">
-        Creemos una pregunta
-      </h1>
-      <InputLabel htmlFor="name">
-        Nombre del Campo:
-        <br />
-        (TodoSeJuntara, solo letras)
-        <InputField
-          props={{ ...register("name", { required: true }) }}
-          type="string"
+    <tr className="text-xs">
+      <td className="px-2 py-1 text-center border-2 border-white">Nuevo</td>
+      <td className="px-2 py-1 text-center border-2 border-white">
+        <input
+          className="px-2 py-1 rounded-lg"
+          placeholder="campo"
+          name="name"
+          value={formData.name}
+          onChange={(e) => {
+            setFormData({ ...formData, name: e.target.value });
+          }}
         />
-        {errors.name && (
-          <NotificationSpan>Debes colocar un nombre al campo</NotificationSpan>
-        )}
-      </InputLabel>
-      <InputLabel htmlFor="labelText">
-        La pregunta:
-        <InputField
-          props={{ ...register("labelText", { required: true }) }}
-          type="string"
+      </td>
+      <td className="px-2 py-1 text-center border-2 border-white">
+        <input
+          className="px-2 py-1 rounded-lg"
+          placeholder="Texto"
+          name="labelText"
+          value={formData.labelText}
+          onChange={(e) => {
+            setFormData({ ...formData, labelText: e.target.value });
+          }}
         />
-        {errors.labelText && (
-          <NotificationSpan>Debes colocar una pregunta</NotificationSpan>
-        )}
-      </InputLabel>
-      <InputLabel htmlFor="questionType">
-        La pregunta:
+      </td>
+      <td className="px-2 py-1 text-center border-2 border-white">
         <select
-          className="p-2 font-bold text-purple-500"
-          {...register("questionType", { required: true })}
+          className="px-2 py-1 rounded-lg"
+          placeholder="Tipo de pregunta"
+          name="questionType"
+          value={formData.questionType}
+          onChange={(e) => {
+            setFormData({ ...formData, questionType: e.target.value });
+          }}
         >
-          <option value="text">Textual</option>
-          <option value="number">Numérico</option>
-          <option value="image">Imagen con Texto</option>
+          <option className="px-2 py-1 rounded-lg" value="number">
+            Numérico
+          </option>
+          <option className="px-2 py-1 rounded-lg" value="text">
+            Texto
+          </option>
+          <option className="px-2 py-1 rounded-lg" value="image">
+            Imagen
+          </option>
         </select>
-        {errors.questionType && (
-          <NotificationSpan>Debes seleccionar un tipo</NotificationSpan>
-        )}
-      </InputLabel>
-      <Button variation={2} type="submit">
-        Crear Pregunta
-      </Button>
-      {isSuccess && <NotificationSpan>Creacion exitosa</NotificationSpan>}
-      {isLoading && <NotificationSpan>Cargando..</NotificationSpan>}
-      {isError && (
-        <NotificationSpan>Hubo un error: {error.data.msg}</NotificationSpan>
-      )}
-    </form>
+      </td>
+      <td className="px-2 py-1 text-center border-2 border-white">
+        <button
+          className="px-2 py-1 font-bold bg-white rounded-lg"
+          onClick={handleSubmit}
+        >
+          Crear
+        </button>
+      </td>
+    </tr>
   );
 }
 

@@ -4,7 +4,7 @@ import Login from "../Pages/Auth/Login";
 import Register from "../Pages/Auth/Register";
 import EditProject from "../Pages/EditProject/EditProject";
 import EditQuestionImage from "../Pages/EditQuestionImage/EditQuestionImage";
-import EditQuestionTextNumber from "../Pages/EditQuestionTextNumber/EditQuestionTextNumber";
+import EditQuestionTextNumber from "../Pages/EditQuestionTextNumber/components/EditQuestionTextNumber";
 import MyProjects from "../Pages/MyProjects/MyProjects";
 import Pallete from "../Pages/Pallete/Pallete";
 import Questionnarie from "../Pages/Questionnarie/Questionnarie";

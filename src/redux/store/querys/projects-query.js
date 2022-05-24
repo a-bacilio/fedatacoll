@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import jsCookie from 'js-cookie';
+import jsCookie from "js-cookie";
 
 export const projectsAPI = createApi({
   reducerPath: "projectsAPI",
@@ -11,10 +11,10 @@ export const projectsAPI = createApi({
       query: () => ({
         url: `/project/user/${jsCookie.get("DTCUSERID")}`,
         method: "get",
-        headers:{
-          authorization:jsCookie.get("DTCTOKEN"),
-          userId:jsCookie.get("DTCUSERID"),
-        }
+        headers: {
+          authorization: jsCookie.get("DTCTOKEN"),
+          userId: jsCookie.get("DTCUSERID"),
+        },
       }),
       transformResponse: (response) => response,
     }),
@@ -22,10 +22,10 @@ export const projectsAPI = createApi({
       query: ({ projectid }) => ({
         url: `/project/${projectid}`,
         method: "get",
-        headers:{
-          authorization:jsCookie.get("DTCTOKEN"),
-          userId:jsCookie.get("DTCUSERID"),
-        }
+        headers: {
+          authorization: jsCookie.get("DTCTOKEN"),
+          userId: jsCookie.get("DTCUSERID"),
+        },
       }),
       transformResponse: (response) => response,
     }),
@@ -35,12 +35,12 @@ export const projectsAPI = createApi({
         method: "post",
         body: {
           name,
-          user: jsCookie.get("DTCUSERID")
+          user: jsCookie.get("DTCUSERID"),
         },
-        headers:{
-          authorization:jsCookie.get("DTCTOKEN"),
-          userId:jsCookie.get("DTCUSERID"),
-        }
+        headers: {
+          authorization: jsCookie.get("DTCTOKEN"),
+          userId: jsCookie.get("DTCUSERID"),
+        },
       }),
       transformResponse: (response) => response,
     }),
@@ -49,12 +49,12 @@ export const projectsAPI = createApi({
         url: `/project`,
         method: "delete",
         body: {
-          id: projectid
+          id: projectid,
         },
-        headers:{
-          authorization:jsCookie.get("DTCTOKEN"),
-          userId:jsCookie.get("DTCUSERID"),
-        }
+        headers: {
+          authorization: jsCookie.get("DTCTOKEN"),
+          userId: jsCookie.get("DTCUSERID"),
+        },
       }),
       transformResponse: (response) => response,
     }),
@@ -63,15 +63,15 @@ export const projectsAPI = createApi({
         url: "/colaboratortoken",
         method: "post",
         body: {
-          projectId
+          projectId,
         },
-        headers:{
-          authorization:jsCookie.get("DTCTOKEN"),
-          userId:jsCookie.get("DTCUSERID"),
-        }
+        headers: {
+          authorization: jsCookie.get("DTCTOKEN"),
+          userId: jsCookie.get("DTCUSERID"),
+        },
       }),
       transformResponse: (response) => response,
-    })
+    }),
   }),
 });
 
@@ -81,6 +81,5 @@ export const {
   useGetOneProjectQuery,
   usePostCreateQuestionMutation,
   useDeleteProjectMutation,
-  usePostColaboratorTokenMutation
-} =
-  projectsAPI;
+  usePostColaboratorTokenMutation,
+} = projectsAPI;

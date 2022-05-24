@@ -29,6 +29,22 @@ export const formquestionsAPI = createApi({
           userId: jsCookie.get("DTCUSERID"),
         },
       }),
+      transformResponse: (response) => {
+        return response;
+      },
+    }),
+    getAllGraphs: builder.query({
+      query: ({ projectid = "" }) => ({
+        url: `/graphs/${projectid}`,
+        method: "get",
+        headers: {
+          authorization: jsCookie.get("DTCTOKEN"),
+          userId: jsCookie.get("DTCUSERID"),
+        },
+      }),
+      transformResponse: (response) => {
+        return response;
+      },
     }),
   }),
 });
@@ -37,4 +53,5 @@ export const {
   useGetFormQuestionDataQuery,
   usePostRegisterMutation,
   useGetAllRegistersQuery,
+  useGetAllGraphsQuery,
 } = formquestionsAPI;

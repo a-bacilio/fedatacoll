@@ -28,7 +28,7 @@ function EditNumberTextQuestionForm({ data, refetch }) {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-col items-center p-5"
+      className="flex flex-col items-center max-w-2xl p-5 mx-auto"
     >
       <InputLabel htmlFor="name">
         Nombre del Campo:
@@ -54,9 +54,13 @@ function EditNumberTextQuestionForm({ data, refetch }) {
         )}
       </InputLabel>
 
-      <Button variation={2} type="submit">
+      <button
+        className="px-2 py-1 bg-white border-2 border-black rounded-lg"
+        variation={2}
+        type="submit"
+      >
         Guardar
-      </Button>
+      </button>
       {isSuccess && (
         <NotificationSpan className="w-full p-5">
           Ingreso exitoso

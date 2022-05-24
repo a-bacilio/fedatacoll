@@ -2,8 +2,11 @@ import React, { useState } from "react";
 import { BsFillShareFill } from "react-icons/bs";
 import copy from "copy-to-clipboard";
 
-function ShowShareLinkButton({ className = "", projectId = "" }) {
-  const [modal, openModal] = useState(false);
+function ShowShareLinkButton({
+  className = "",
+  projectId = "",
+  setmodal = () => {},
+}) {
   const [url, setUrl] = useState(
     `${process.env.REACT_APP_HOST}/sharelink/${projectId}`
   );
@@ -12,34 +15,29 @@ function ShowShareLinkButton({ className = "", projectId = "" }) {
     setUrl("Copiado!");
   };
   return (
-    <>
-      <BsFillShareFill
-        className={`${className}`}
-        onClick={async () => {
-          openModal(true);
-        }}
-      />
-      {modal && (
-        <div className="fixed top-0 left-0 flex flex-col items-center justify-center w-full h-full bg-black bg-opacity-70">
-          <div className="relative p-2 font-bold text-black bg-white rounded-lg ">
-            Haga clic para copiar: <br />
-            <div
-              className="absolute z-50 flex flex-col items-center justify-center w-12 h-12 text-xs font-bold text-black rounded-full cursor-pointer bg-fuchsia-400 -top-10 -right-10"
-              onClick={() => openModal(false)}
-            >
-              Cerrar
-            </div>
+    <BsFillShareFill
+      className={`${className}`}
+      onClick={async () => {
+        setmodal(
+          <div className="flex flex-row items-center w-full px-2 py-1 text-xs font-bold text-black bg-white rounded-lg ">
+            Haga clic para copiar:
             <button
               type="button"
               onClick={copyToClipboard}
-              className="p-1 mx-auto my-auto text-black bg-white border-2 rounded-lg cursor-pointer"
+              className="mx-auto my-auto text-black bg-white border-2 rounded-lg cursor-pointer "
             >
               {url}
             </button>
+            <div
+              className="flex flex-col items-center justify-center px-2 text-xs font-bold text-black text-white bg-red-400 rounded-full cursor-pointer"
+              onClick={() => setmodal(null)}
+            >
+              x
+            </div>
           </div>
-        </div>
-      )}
-    </>
+        );
+      }}
+    />
   );
 }
 
