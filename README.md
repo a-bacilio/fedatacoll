@@ -1,4 +1,4 @@
-# Data Collect project : Backend
+# Data Collect project : Front END
 
 This one is a react app project build with the following libraries
 
@@ -12,11 +12,15 @@ This one is a react app project build with the following libraries
 
 ## You can install it from docker, 
 
-its name is : 
+````
+abacilioruiz/datacollbackend
+````
 
 ## or the github Repo
 
-
+````
+abacilioruiz/datacollbackend
+````
 
 ## it has 3 important scripts:
 
