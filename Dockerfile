@@ -7,6 +7,10 @@ FROM node:14-slim AS RCLIENT
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 COPY . .
+ARG REACT_APP_BACKEND_API
+ENV REACT_APP_BACKEND_API=${REACT_APP_BACKEND_API}
+ARG REACT_APP_HOST
+ENV REACT_APP_HOST=${REACT_APP_HOST}
 RUN npm install --legacy-peer-deps
 RUN npm run build
 
