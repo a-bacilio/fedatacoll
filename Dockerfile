@@ -13,6 +13,10 @@ RUN npm run build
 
 # Bundle static assets with nginx
 FROM nginx:alpine AS productionClient
+ARG REACT_APP_BACKEND_API
+ENV REACT_APP_BACKEND_API=${REACT_APP_BACKEND_API}
+ARG REACT_APP_HOST
+ENV REACT_APP_HOST=${REACT_APP_HOST}
 # Copy built assets from builder
 COPY --from=RCLIENT /usr/src/app/build /usr/share/nginx/html
 # Add your nginx.conf
