@@ -13,7 +13,7 @@ function EditNumberTextQuestionForm({ data, refetch }) {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({ defaultValues: data || {} });
   const [postUpdate, { isSuccess, isError, isLoading, error }] =
     useUpdateNumberTextQuestionMutation();
   const onSubmit = async (formData) => {

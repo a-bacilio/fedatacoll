@@ -14,9 +14,10 @@ function RegisterForm() {
   } = useForm();
   const [postRegisterUser, { isSuccess, isError, isLoading, error }] =
     usePostRegisterUserMutation();
-  const onSubmit = (data) => {
-    postRegisterUser(data);
-    reset();
+  const onSubmit = async (data) => {
+    await postRegisterUser(data);
+    await reset();
+    window.location.replace("/");
   };
   return (
     <form

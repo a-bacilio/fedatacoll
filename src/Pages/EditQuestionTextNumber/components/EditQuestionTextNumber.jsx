@@ -19,7 +19,7 @@ function EditQuestionTextNumber() {
           className="px-2 py-1 font-bold text-black bg-white rounded-lg"
           to={`/myProjects/${data && data.project}`}
         >
-          Volver al proyecto
+          Volver
         </Link>
       </NavBar>
       <div className="w-full h-full min-h-screen my-4 bg-stone-800">
@@ -29,7 +29,9 @@ function EditQuestionTextNumber() {
           </div>
           <div className="flex flex-col items-center w-full px-1 py-10 bg-yellow-400 border-t-2 border-black">
             <div className="w-full max-w-6xl p-5 mt-5 bg-white shadow-lg shadow-black">
-              <EditNumberTextQuestionForm refetch={refetch} data={data} />
+              {data && (
+                <EditNumberTextQuestionForm refetch={refetch} data={data} />
+              )}
             </div>
           </div>
         </div>

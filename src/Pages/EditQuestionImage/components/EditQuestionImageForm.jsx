@@ -10,13 +10,13 @@ import { getUpdateWithImageFormData } from "../../Shared/utils/getUpdateWithImag
 
 function EditQuestionImageForm({ data, refetch }) {
   const { questionid } = useParams();
+  const [postUpdate, { isSuccess, isError, isLoading, error }] =
+    useUpdateImageQuestionMutation();
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
-  const [postUpdate, { isSuccess, isError, isLoading, error }] =
-    useUpdateImageQuestionMutation();
+  } = useForm({ defaultValues: data || {} });
 
   const onSubmit = async (formData) => {
     await postUpdate({
