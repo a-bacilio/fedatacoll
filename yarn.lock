@@ -1475,7 +1475,7 @@
     "d3-scale-chromatic" "^2.0.0"
     "lodash" "^4.17.21"
 
-"@nivo/core@0.79.0":
+"@nivo/core@^0.79.0", "@nivo/core@0.79.0":
   "integrity" "sha512-e1iGodmGuXkF+QWAjhHVFc+lUnfBoUwaWqVcBXBfebzNc50tTJrTTMHyQczjgOIfTc8gEu23lAY4mVZCDKscig=="
   "resolved" "https://registry.npmjs.org/@nivo/core/-/core-0.79.0.tgz"
   "version" "0.79.0"
