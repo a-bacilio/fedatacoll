@@ -13,13 +13,13 @@ This one is a react app project build with the following libraries
 ## You can install it from docker, 
 
 ````
-abacilioruiz/datacollbackend
+abacilioruiz/datacollfe
 ````
 
 ## or the github Repo
 
 ````
-abacilioruiz/datacollbackend
+https://github.com/a-bacilio/fedatacoll
 ````
 
 ## it has 3 important scripts:
